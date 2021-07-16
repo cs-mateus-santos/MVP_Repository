@@ -12,10 +12,9 @@ protocol PersistenceRepository {
     
     func save(_ object:MovieParse) -> Bool
     func checkIfIsFavorite(_ id:Int) -> Bool
-    func favorite(_ movie: MovieParse)
     func fetch() -> [MovieParse]
-    func update(_ index:Int, newObject: MovieParse)
-    func delete(_ index:Int)
+    func update(_ id:Int, newObject: MovieParse)
+    func delete(_ id:Int)
 }
 
 protocol ApiRepository {
@@ -27,7 +26,7 @@ protocol URLImages {
 }
 
 class MovieRepository: MovieRepositoryInputProtocol {
-    
+
     static let share = MovieRepository()
     
     var output: MovieRepositoryOutputProtocol?
@@ -62,7 +61,11 @@ class MovieRepository: MovieRepositoryInputProtocol {
     }
     
     func favoriteMovie(_ movie: MovieParse) {
-        persistence.favorite(movie)
+        _ = persistence.save(movie)
+    }
+    
+    func disfavor(_ id: Int) {
+        persistence.delete(id)
     }
     
     func checkIfIsFavorite(_ index: Int) -> Bool {

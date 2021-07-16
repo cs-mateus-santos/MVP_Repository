@@ -8,11 +8,11 @@
 import RealmSwift
 
 public class CRUDRealm: PersistenceRepository {
-
+    
     public var movies: [MovieObject] = []
     
     public init() {
-
+        
     }
     
     static var share: CRUDRealm = CRUDRealm()
@@ -38,7 +38,6 @@ public class CRUDRealm: PersistenceRepository {
     
     public func checkIfIsFavorite(_ id:Int) -> Bool{
         updateList()
-        
         for object in movies {
             if object.id == id {
                 return true
@@ -47,13 +46,6 @@ public class CRUDRealm: PersistenceRepository {
         return false
     }
     
-    internal func favorite(_ movie: MovieParse) {
-        if save(movie) {
-            NSLog("Favoritado com Sucesso !!!")
-        } else {
-            NSLog("Erro em favoritar !!!")
-        }
-    }
     
     func updateList() {
         guard let list = PersistenceRealm.realm?.objects(MovieObject.self) else { return }
@@ -77,51 +69,6 @@ public class CRUDRealm: PersistenceRepository {
         return listReturn
     }
     
-    public func fetchAllIds() -> [Int] {
-        updateList()
-        var ids:[Int] = []
-        movies.forEach { movie in
-            ids.append(movie.id)
-        }
-        return ids
-    }
-    
-    public func fetchAllTitles() -> [String] {
-        updateList()
-        var titles:[String] = []
-        movies.forEach { movie in
-            titles.append(movie.title)
-        }
-        return titles
-    }
-    
-    public func fetchAllOverview() -> [String] {
-        updateList()
-        var overviews:[String] = []
-        movies.forEach { movie in
-            overviews.append(movie.overview)
-        }
-        return overviews
-    }
-    
-    public func fetchAllPoster_path() -> [String] {
-        updateList()
-        var posters:[String] = []
-        movies.forEach { movie in
-            posters.append(movie.poster_path)
-        }
-        return posters
-    }
-    
-    public func fetchAllRelease_date() -> [String] {
-        updateList()
-        var dates:[String] = []
-        movies.forEach { movie in
-            dates.append(movie.release_date)
-        }
-        return dates
-    }
-    
     internal func update(_ index:Int, newObject: MovieParse) {
         let movie = movies[index]
         do {
@@ -138,15 +85,18 @@ public class CRUDRealm: PersistenceRepository {
         }
     }
     
-    public func delete(_ index:Int) {
-        let movie = movies[index]
-        do {
-            let realm  = try Realm()
-            try realm.write{
-                realm.delete(movie)
+    public func delete(_ id:Int) {
+        updateList()
+        for object in movies {
+            if object.id == id {
+                do {
+                    try PersistenceRealm.realm?.write{
+                        PersistenceRealm.realm?.delete(object)
+                    }
+                } catch {
+                    print("Error in update method")
+                }
             }
-        } catch {
-            print("Error in update method")
         }
     }
 }

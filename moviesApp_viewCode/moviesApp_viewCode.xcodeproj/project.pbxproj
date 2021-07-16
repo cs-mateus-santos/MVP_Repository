@@ -21,6 +21,7 @@
 		BB97ADC626A1CE1200334A37 /* ProtocolsFavoritesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97ADC526A1CE1200334A37 /* ProtocolsFavoritesList.swift */; };
 		BB97ADC826A1CECC00334A37 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97ADC726A1CECC00334A37 /* FavoritesViewController.swift */; };
 		BB97ADCA26A1CFD500334A37 /* FavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97ADC926A1CFD500334A37 /* FavoritesPresenter.swift */; };
+		BB97ADCC26A1D4C200334A37 /* ProtocolsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97ADCB26A1D4C200334A37 /* ProtocolsRepository.swift */; };
 		BBAFC12726442AFD000DCCC3 /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFC12626442AFD000DCCC3 /* Codable.swift */; };
 		BBAFC12C26442D4F000DCCC3 /* APIClientMovieDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFC12B26442D4F000DCCC3 /* APIClientMovieDB.swift */; };
 		BBAFC13126442EB6000DCCC3 /* APIRequestMovieDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFC13026442EB6000DCCC3 /* APIRequestMovieDB.swift */; };
@@ -78,6 +79,7 @@
 		BB97ADC526A1CE1200334A37 /* ProtocolsFavoritesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolsFavoritesList.swift; sourceTree = "<group>"; };
 		BB97ADC726A1CECC00334A37 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		BB97ADC926A1CFD500334A37 /* FavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesPresenter.swift; sourceTree = "<group>"; };
+		BB97ADCB26A1D4C200334A37 /* ProtocolsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolsRepository.swift; sourceTree = "<group>"; };
 		BBAFC12626442AFD000DCCC3 /* Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
 		BBAFC12B26442D4F000DCCC3 /* APIClientMovieDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMovieDB.swift; sourceTree = "<group>"; };
 		BBAFC13026442EB6000DCCC3 /* APIRequestMovieDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestMovieDB.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				BB50AF0026A0C73D00B22A40 /* MovieRepository.swift */,
+				BB97ADCB26A1D4C200334A37 /* ProtocolsRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				BBAFC12726442AFD000DCCC3 /* Codable.swift in Sources */,
 				BBED30A9264387ED00F354F9 /* SceneDelegate.swift in Sources */,
 				BB50AEFC26A0B9FC00B22A40 /* CRUDRealm.swift in Sources */,
+				BB97ADCC26A1D4C200334A37 /* ProtocolsRepository.swift in Sources */,
 				BBED30F6264389DC00F354F9 /* ListMovieDelegate.swift in Sources */,
 				BB50AF0426A0C89D00B22A40 /* ProtocolsMoviesList.swift in Sources */,
 				BB97ADBD26A1C24600334A37 /* PersistenceRealm.swift in Sources */,

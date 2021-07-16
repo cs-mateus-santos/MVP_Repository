@@ -24,7 +24,7 @@ class FavoritesPresenter: FavoritesPresenterInputProtocol {
     }
     
     func favorite(_ movie: MovieParse) {
-        repository.favoriteMovie(movie)
+        repository.disfavor(movie.id)
     }
    
 }
