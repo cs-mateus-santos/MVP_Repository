@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (5.4.3)
+  - iOSSnapshotTestCase (6.2.0):
+    - iOSSnapshotTestCase/SwiftSupport (= 6.2.0)
+  - iOSSnapshotTestCase/Core (6.2.0)
+  - iOSSnapshotTestCase/SwiftSupport (6.2.0):
+    - iOSSnapshotTestCase/Core
+  - Kingfisher (6.3.0)
+  - Realm (10.8.0):
+    - Realm/Headers (= 10.8.0)
+  - Realm/Headers (10.8.0)
+  - RealmSwift (10.8.0):
+    - Realm (= 10.8.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - iOSSnapshotTestCase
+  - Kingfisher (~> 6.0)
+  - RealmSwift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - iOSSnapshotTestCase
+    - Kingfisher
+    - Realm
+    - RealmSwift
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  iOSSnapshotTestCase: 9ab44cb5aa62b84d31847f40680112e15ec579a6
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  Realm: ad3c5cd762e5a5bc02080fc55aa04a0e43f98575
+  RealmSwift: 316e450478fb01e06ece4438dda42f407c5f51d2
+
+PODFILE CHECKSUM: dbabf9764b6fd89df8708ba96f220760607c232e
+
+COCOAPODS: 1.10.1
