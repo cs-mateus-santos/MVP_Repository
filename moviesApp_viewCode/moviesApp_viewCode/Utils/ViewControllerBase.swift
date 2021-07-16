@@ -15,6 +15,14 @@ class ViewControllerBase: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    internal init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    internal required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.topItem?.title = "Movies"
         navigationController?.navigationBar.isTranslucent = false
@@ -29,5 +37,16 @@ class ViewControllerBase: UIViewController {
            navigationController?.navigationBar.compactAppearance = appearance
            navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
+    
+    func addBackButtonNavBar() {
+        let back = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: #selector(backToRoot))
+
+        navigationItem.leftBarButtonItems = [back]
+    }
+    
+    @objc func backToRoot() {
+        
+    }
+    
     
 }

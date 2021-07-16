@@ -58,10 +58,10 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }()
     
     func setUpCell(movie: MovieParse) {
-        if movie.isFavorite {
-            movie.isFavorite = true
-            icon.image = UIImage(systemName: "heart.fill")
-        }
+        //if movie.isFavorite {
+         //   movie.isFavorite = true
+         //   icon.image = UIImage(systemName: "heart.fill")
+        //}
         self.titleMovie.text = movie.title
         self.imageView.image = movie.imageMovie
         
@@ -87,13 +87,13 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         if elementTouched == self.icon {
             guard let object = movie else { return }
-            if object.isFavorite {
-                object.isFavorite = false
-                icon.image = UIImage(systemName: "heart")
-            } else {
-                object.isFavorite = true
-                icon.image = UIImage(systemName: "heart.fill")
-            }
+//            if object.isFavorite {
+//                object.isFavorite = false
+//                icon.image = UIImage(systemName: "heart")
+//            } else {
+//                object.isFavorite = true
+//                icon.image = UIImage(systemName: "heart.fill")
+//            }
             delegate?.hearthIsTouched(object)
         }
     }

@@ -13,11 +13,18 @@ class MoviesViewController: ViewControllerBase {
     
     let viewBase = ListMovieViewBase()
     
-    lazy var presenter:MoviePresenter = {
-        let presenter = MoviePresenter(self)
-        return presenter
-    }()
-
+    var presenter:MoviePresenter
+    
+    init(presenter: MoviePresenter) {
+        self.presenter = presenter
+        super.init()
+        presenter.view = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }

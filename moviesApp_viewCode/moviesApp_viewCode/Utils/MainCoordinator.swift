@@ -16,7 +16,9 @@ class MainCoordinator: NSObject, Coordinator {
     }
 
     func start(){
-        let viewController = MoviesViewController()
+        let repository = MovieRepository()
+        let presenter = MoviePresenter(repository: repository)
+        let viewController = MoviesViewController(presenter: presenter)
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: true)
     }
@@ -25,7 +27,9 @@ class MainCoordinator: NSObject, Coordinator {
 
 extension MainCoordinator {
     func navigateToFavoritesList() {
-        let viewController = FavoritesViewController()
+        let repository = MovieRepository()
+        let presenter = FavoritesPresenter(repository: repository)
+        let viewController = FavoritesViewController(presenter: presenter)
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: true)
     }

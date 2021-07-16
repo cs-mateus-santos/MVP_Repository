@@ -13,7 +13,12 @@ class FavoritesPresenter: FavoritesPresenterInputProtocol {
     
     var repository: MovieRepositoryInputProtocol
     
-    init(_ view: FavoritesViewProtocol, repository: MovieRepositoryInputProtocol = MovieRepository.share) {
+    init(repository: MovieRepositoryInputProtocol = MovieRepository.share) {
+        self.repository = repository
+        repository.output = self
+    }
+    
+    init(_ view: FavoritesViewProtocol, repository: MovieRepositoryInputProtocol) {
         self.view = view
         self.repository = repository
         repository.output = self

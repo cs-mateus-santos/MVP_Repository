@@ -13,11 +13,18 @@ class FavoritesViewController: ViewControllerBase {
     
     let viewBase = ListMovieViewBase()
     
-    lazy var presenter:FavoritesPresenterInputProtocol = {
-        let presenter = FavoritesPresenter(self)
-        return presenter
-    }()
+    var presenter: FavoritesPresenterInputProtocol
+    
+    init(presenter: FavoritesPresenterInputProtocol) {
+        self.presenter = presenter
+        super.init()
+        presenter.view = self
+    }
 
+    internal required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
