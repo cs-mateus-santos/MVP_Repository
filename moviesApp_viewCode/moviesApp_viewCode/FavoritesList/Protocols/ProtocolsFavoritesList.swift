@@ -13,7 +13,7 @@ internal protocol FavoritesPresenterInputProtocol: AnyObject {
     var repository: MovieRepositoryInputProtocol { get set }
 
     func fetchMovies()
-    func favorite(_ movie: MovieParse)
+    func desFavorite(_ movie: MovieParse)
 }
 
 internal protocol FavoritesViewProtocol: AnyObject {

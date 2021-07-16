@@ -12,12 +12,12 @@ class ImageURLKingFisher: URLImages {
     
     func getImage(imagePath: String, completion: @escaping (Data) -> Void) {
         let url = URL(string: "https://image.tmdb.org/t/p/w185/\(imagePath)") ?? URL(fileURLWithPath: "ERROR")
-        let resource = ImageResource(downloadURL: url, cacheKey: "")
-
-        KingfisherManager.shared.retrieveImage(with: resource) { result in
+        
+        ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
+            result in
             switch result {
-            case let .success(imageResult):
-                completion(imageResult.image.pngData() ?? Data())
+            case let .success(image):
+                completion(image.originalData)
             case .failure(_): break
             }
         }

@@ -38,7 +38,7 @@ class FavoritesViewController: ViewControllerBase {
 extension FavoritesViewController: delegateMovieCollectionViewCell {
     
     func hearthIsTouched(_ movie: MovieParse) {
-        presenter.favorite(movie)
+        presenter.desFavorite(movie)
     }
     
 }
