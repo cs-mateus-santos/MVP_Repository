@@ -24,5 +24,9 @@ class MainCoordinator: NSObject, Coordinator {
 
 
 extension MainCoordinator {
-
+    func navigateToFavoritesList() {
+        let viewController = FavoritesViewController()
+        viewController.coordinator = self
+        navigationController.pushViewController(viewController, animated: true)
+    }
 }

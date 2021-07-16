@@ -28,6 +28,8 @@ protocol URLImages {
 
 class MovieRepository: MovieRepositoryInputProtocol {
     
+    static let share = MovieRepository()
+    
     var output: MovieRepositoryOutputProtocol?
     
     let api: ApiRepository

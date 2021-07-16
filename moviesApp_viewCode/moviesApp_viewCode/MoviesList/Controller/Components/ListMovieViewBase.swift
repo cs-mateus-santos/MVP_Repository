@@ -21,7 +21,7 @@ class ListMovieViewBase: UIView {
         return delegate
     }()
     
-    let movieToFlutterButton:UIButton = {
+    let movieToFavoritesButton:UIButton = {
         let button  = UIButton()
         button.setTitle("Favorites", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -89,7 +89,7 @@ extension ListMovieViewBase: ViewCodable {
  
     func setupViewHierarchy() {
         self.addSubview(collectionView)
-        self.addSubview(movieToFlutterButton)
+        self.addSubview(movieToFavoritesButton)
     }
     
     func setupConstraints() {
@@ -103,10 +103,10 @@ extension ListMovieViewBase: ViewCodable {
         ])
         
         NSLayoutConstraint.activate([
-            movieToFlutterButton.widthAnchor.constraint(equalTo: self.widthAnchor,multiplier: 0.4),
-            movieToFlutterButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.08),
-            movieToFlutterButton.topAnchor.constraint(equalTo: self.collectionView.bottomAnchor,constant: 10),
-            movieToFlutterButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            movieToFavoritesButton.widthAnchor.constraint(equalTo: self.widthAnchor,multiplier: 0.4),
+            movieToFavoritesButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.08),
+            movieToFavoritesButton.topAnchor.constraint(equalTo: self.collectionView.bottomAnchor,constant: 10),
+            movieToFavoritesButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
         
     }

@@ -1,24 +1,26 @@
 //
-//  MovieViewModel.swift
+//  FavoritesPresenter.swift
 //  moviesApp_viewCode
 //
-//  Created by mateus.santos on 06/05/21.
+//  Created by mateus.santos on 16/07/21.
 //
 
-class MoviePresenter: MoviePresenterInputProtocol {
+import Foundation
+
+class FavoritesPresenter: FavoritesPresenterInputProtocol {
     
-    var view: MovieViewProtocol?
+    var view: FavoritesViewProtocol?
     
     var repository: MovieRepositoryInputProtocol
     
-    init(_ view: MovieViewProtocol, repository: MovieRepositoryInputProtocol = MovieRepository.share) {
+    init(_ view: FavoritesViewProtocol, repository: MovieRepositoryInputProtocol = MovieRepository.share) {
         self.view = view
         self.repository = repository
         repository.output = self
     }
     
     func fetchMovies() {
-        repository.fetchMoviesAPI()
+        repository.fetchMoviesPersistence()
     }
     
     func favorite(_ movie: MovieParse) {
@@ -27,7 +29,7 @@ class MoviePresenter: MoviePresenterInputProtocol {
    
 }
 
-extension MoviePresenter: MovieRepositoryOutputProtocol {
+extension FavoritesPresenter: MovieRepositoryOutputProtocol {
     
     func fetchMoviesResponse(_ movieData: [MovieParse]) {
         var newList: [MovieParse] = []

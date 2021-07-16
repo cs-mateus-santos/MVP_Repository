@@ -1,20 +1,20 @@
 //
-//  ViewController.swift
-//  mateusRodrigues_moviesApp
+//  FavoritesViewController.swift
+//  moviesApp_viewCode
 //
-//  Created by mateus.santos on 05/05/21.
+//  Created by mateus.santos on 16/07/21.
 //
 
 import UIKit
 
-class MoviesViewController: ViewControllerBase {
+class FavoritesViewController: ViewControllerBase {
     
     weak var coordinator: MainCoordinator?
     
     let viewBase = ListMovieViewBase()
     
-    lazy var presenter:MoviePresenter = {
-        let presenter = MoviePresenter(self)
+    lazy var presenter:FavoritesPresenterInputProtocol = {
+        let presenter = FavoritesPresenter(self)
         return presenter
     }()
 
@@ -29,12 +29,13 @@ class MoviesViewController: ViewControllerBase {
     }
     
     override func viewDidLoad() {
+        viewBase.movieToFavoritesButton.isHidden = true
         presenter.fetchMovies()
         addTrigerrs()
     }
 }
 
-extension MoviesViewController: delegateMovieCollectionViewCell {
+extension FavoritesViewController: delegateMovieCollectionViewCell {
     
     func hearthIsTouched(_ movie: MovieParse) {
         presenter.favorite(movie)
@@ -42,7 +43,7 @@ extension MoviesViewController: delegateMovieCollectionViewCell {
     
 }
 
-extension MoviesViewController: MovieViewProtocol {
+extension FavoritesViewController: FavoritesViewProtocol {
     
     func fetchMoviesResponse(_ movieData: MovieView) {
         viewBase.delegate.updateDelegate(delegateAction: self)
@@ -55,19 +56,15 @@ extension MoviesViewController: MovieViewProtocol {
 }
 
 //MARK: Triggers
-extension MoviesViewController {
+extension FavoritesViewController {
     
     func addTrigerrs(){
-        viewBase.movieToFavoritesButton.addTarget(self, action: #selector(movieToFavorites), for: .touchUpInside)
+
     }
 
-    @objc func movieToFavorites() {
-        coordinator?.navigateToFavoritesList()
-    }
-    
 }
 
-extension MoviesViewController: DelegateAction {
+extension FavoritesViewController: DelegateAction {
     func didSelected() {
         
     }
