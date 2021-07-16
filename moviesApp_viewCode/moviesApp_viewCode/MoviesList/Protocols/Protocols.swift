@@ -14,7 +14,7 @@ internal protocol MoviePresenterInputProtocol: AnyObject {
     var repository: MovieRepositoryInputProtocol { get set }
 
     func fetchMovies()
-    func favorite(_ index: Int)
+    func favorite(_ movie: MovieParse)
 }
 
 internal protocol MovieViewProtocol: AnyObject {
@@ -29,7 +29,7 @@ internal protocol MovieRepositoryInputProtocol: AnyObject {
 
     func fetchMoviesAPI()
     func fetchMoviesPersistence()
-    func favoriteMovie(_ index: Int)
+    func favoriteMovie(_ movie: MovieParse)
     func checkIfIsFavorite(_ index: Int) -> Bool
     func getImage(imagePath: String) -> UIImage
     

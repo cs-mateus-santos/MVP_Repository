@@ -8,13 +8,13 @@
 import UIKit
 
 protocol PersistenceRepository {
-    var movies: [MovieObject]? { get set }
+    var movies: [MovieObject] { get set }
     
-    func save(_ object:MovieObject) -> Bool
-    func checkIfIsFavorite(_ index:Int) -> Bool
-    func favorite(_ index:Int)
-    func fetch()
-    func update(_ index:Int,_ newObject: MovieObject)
+    func save(_ object:MovieParse) -> Bool
+    func checkIfIsFavorite(_ id:Int) -> Bool
+    func favorite(_ movie: MovieParse)
+    func fetch() -> [MovieParse]
+    func update(_ index:Int, newObject: MovieParse)
     func delete(_ index:Int)
 }
 
@@ -37,8 +37,8 @@ class MovieRepository: MovieRepositoryInputProtocol {
     
     init(
         api: ApiRepository = APIClientMovieDB(),
-        persistence: PersistenceRepository = CRUDRealm(),
-        images: URLImages = ImageURLKingFisher()) {
+        persistence: PersistenceRepository = CRUDRealm.share,
+        images: URLImages = ImageURLSwift()) {
         self.api = api
         self.persistence = persistence
         self.images = images
@@ -55,28 +55,12 @@ class MovieRepository: MovieRepositoryInputProtocol {
     }
     
     func fetchMoviesPersistence() {
-        persistence.fetch()
-        let list = persistence.movies
-        var listReturn:[MovieParse] = []
-        list?.forEach{
-            //Parse 1
-            let movieParse = MovieParse(
-                isFavorite: $0.isFavorite,
-                index: nil,
-                id: $0.id,
-                title: $0.title,
-                overview: $0.overview,
-                imageMovie: nil
-            )
-            listReturn.append(movieParse)
-            
-            self.output?.fetchMoviesResponse(listReturn)
-        
-        }
+        let list = persistence.fetch()
+        self.output?.fetchMoviesResponse(list)
     }
     
-    func favoriteMovie(_ index: Int) {
-        persistence.favorite(index)
+    func favoriteMovie(_ movie: MovieParse) {
+        persistence.favorite(movie)
     }
     
     func checkIfIsFavorite(_ index: Int) -> Bool {

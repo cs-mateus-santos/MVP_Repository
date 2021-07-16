@@ -8,27 +8,26 @@
 import RealmSwift
 
 public class CRUDRealm: PersistenceRepository {
-    
-    lazy var realm: Realm = {
-        do {
-            let object = try Realm()
-            return object
-        } catch  {
-            fatalError()
-        }
-    }()
-    
-    public var movies: [MovieObject]?
 
-    public init(){
+    public var movies: [MovieObject] = []
+    
+    public init() {
 
     }
     
-    public func save(_ object:MovieObject) -> Bool{
+    static var share: CRUDRealm = CRUDRealm()
+    
+    internal func save(_ object: MovieParse) -> Bool {
         print(Realm.Configuration.defaultConfiguration.fileURL as Any)
         do {
-            try realm.write{
-                realm.add(object)
+            try PersistenceRealm.realm?.write{
+                let movie = MovieObject()
+                movie.id = object.id
+                movie.overview = object.overview
+                movie.poster_path = object.poster_path
+                movie.release_date = object.poster_path
+                movie.title = object.title
+                PersistenceRealm.realm?.add(movie)
             }
             return true
         } catch {
@@ -37,99 +36,117 @@ public class CRUDRealm: PersistenceRepository {
         }
     }
     
-    public func checkIfIsFavorite(_ index:Int) -> Bool{
-        guard let movie = movies?[index] else { return false }
-        if movie.isFavorite {
-            return true
-        }else{
-            return false
-        }
-    }
-    
-    public func favorite(_ index:Int) {
-        if let movie = movies?[index] {
-            do {
-                try realm.write{
-                    movie.isFavorite = true
-                }
-            } catch {
-                print("Error in update method")
+    public func checkIfIsFavorite(_ id:Int) -> Bool{
+        updateList()
+        
+        for object in movies {
+            if object.id == id {
+                return true
             }
         }
+        return false
     }
     
-    public func fetch() {
-        movies = Array(realm.objects(MovieObject.self))
+    internal func favorite(_ movie: MovieParse) {
+        if save(movie) {
+            NSLog("Favoritado com Sucesso !!!")
+        } else {
+            NSLog("Erro em favoritar !!!")
+        }
+    }
+    
+    func updateList() {
+        guard let list = PersistenceRealm.realm?.objects(MovieObject.self) else { return }
+        movies = Array(list)
+        
+    }
+    
+    internal func fetch() -> [MovieParse] {
+        updateList()
+        var listReturn:[MovieParse] = []
+        movies.forEach{
+            //Parse 1
+            let movieParse = MovieParse(
+                id: $0.id,
+                title: $0.title,
+                overview: $0.overview,
+                poster_path: $0.poster_path
+            )
+            listReturn.append(movieParse)
+        }
+        return listReturn
     }
     
     public func fetchAllIds() -> [Int] {
-        movies = Array(realm.objects(MovieObject.self))
+        updateList()
         var ids:[Int] = []
-        movies?.forEach { movie in
+        movies.forEach { movie in
             ids.append(movie.id)
         }
         return ids
     }
     
     public func fetchAllTitles() -> [String] {
-        movies = Array(realm.objects(MovieObject.self))
+        updateList()
         var titles:[String] = []
-        movies?.forEach { movie in
+        movies.forEach { movie in
             titles.append(movie.title)
         }
         return titles
     }
     
     public func fetchAllOverview() -> [String] {
-        movies = Array(realm.objects(MovieObject.self))
+        updateList()
         var overviews:[String] = []
-        movies?.forEach { movie in
+        movies.forEach { movie in
             overviews.append(movie.overview)
         }
         return overviews
     }
     
     public func fetchAllPoster_path() -> [String] {
-        movies = Array(realm.objects(MovieObject.self))
+        updateList()
         var posters:[String] = []
-        movies?.forEach { movie in
+        movies.forEach { movie in
             posters.append(movie.poster_path)
         }
         return posters
     }
     
     public func fetchAllRelease_date() -> [String] {
-        movies = Array(realm.objects(MovieObject.self))
+        updateList()
         var dates:[String] = []
-        movies?.forEach { movie in
+        movies.forEach { movie in
             dates.append(movie.release_date)
         }
         return dates
     }
     
-    public func update(_ index:Int,_ newObject: MovieObject) {
-        if let movie = movies?[index]{
-            do {
-                try realm.write{
-                    movie.title = newObject.title
-                    movie.overview = newObject.overview
-                    movie.poster_path = newObject.poster_path
-                }
-            } catch {
-                print("Error in update method")
+    internal func update(_ index:Int, newObject: MovieParse) {
+        let movie = movies[index]
+        do {
+            try PersistenceRealm.realm?.write{
+                movie.id = newObject.id
+                movie.overview = newObject.overview
+                movie.poster_path = newObject.poster_path
+                movie.release_date = newObject.poster_path
+                movie.title = newObject.title
+                PersistenceRealm.realm?.add(movie)
             }
+        } catch {
+            print("Error in update method")
         }
     }
     
     public func delete(_ index:Int) {
-        if let movie = movies?[index]{
-            do {
-                try realm.write{
-                    realm.delete(movie)
-                }
-            } catch {
-                print("Error in update method")
+        let movie = movies[index]
+        do {
+            let realm  = try Realm()
+            try realm.write{
+                realm.delete(movie)
             }
+        } catch {
+            print("Error in update method")
         }
     }
 }

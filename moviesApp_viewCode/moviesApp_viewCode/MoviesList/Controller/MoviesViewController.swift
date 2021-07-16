@@ -36,8 +36,8 @@ class MoviesViewController: ViewControllerBase {
 
 extension MoviesViewController: delegateMovieCollectionViewCell {
     
-    func hearthIsTouched(_ index: Int) {
-        presenter.favorite(index)
+    func hearthIsTouched(_ movie: MovieParse) {
+        presenter.favorite(movie)
     }
     
 }

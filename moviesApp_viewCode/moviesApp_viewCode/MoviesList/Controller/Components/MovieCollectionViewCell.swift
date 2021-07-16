@@ -8,7 +8,7 @@
 import UIKit
 
 protocol delegateMovieCollectionViewCell: AnyObject {
-    func hearthIsTouched(_ index: Int)
+    func hearthIsTouched(_ movie: MovieParse)
 }
 
 class MovieCollectionViewCell: UICollectionViewCell {
@@ -17,9 +17,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
 
     static let reuseIdentifierListCell = "listMovieCell"
     
-    var index: Int?
-    
-    var isFavorite = false
+    var movie: MovieParse?
     
     let imageView:UIImageView = {
         let imageView = UIImageView(frame: .zero)
@@ -59,16 +57,15 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    func setUpCell(
-        index: Int,
-        isFavorite: Bool,
-        titleMovie:String,
-        movieImage:UIImage) {
-        self.isFavorite = isFavorite
-        self.index = index
-        self.titleMovie.text = titleMovie
-        self.imageView.image = movieImage
+    func setUpCell(movie: MovieParse) {
+        if movie.isFavorite {
+            movie.isFavorite = true
+            icon.image = UIImage(systemName: "heart.fill")
+        }
+        self.titleMovie.text = movie.title
+        self.imageView.image = movie.imageMovie
         
+        self.movie = movie
     }
     
     override init(frame: CGRect) {
@@ -89,14 +86,15 @@ class MovieCollectionViewCell: UICollectionViewCell {
         let elementTouched = self.hitTest(location, with: event)
         
         if elementTouched == self.icon {
-            if !isFavorite {
-                isFavorite = true
-                icon.image = UIImage(systemName: "heart.fill")
-            } else {
-                isFavorite = false
+            guard let object = movie else { return }
+            if object.isFavorite {
+                object.isFavorite = false
                 icon.image = UIImage(systemName: "heart")
+            } else {
+                object.isFavorite = true
+                icon.image = UIImage(systemName: "heart.fill")
             }
-            delegate?.hearthIsTouched(index ?? 0)
+            delegate?.hearthIsTouched(object)
         }
     }
 }

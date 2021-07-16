@@ -36,12 +36,7 @@ class ListMovieDataSource: NSObject, UICollectionViewDataSource {
         else { return UICollectionViewCell() }
         
         cell.delegate = delegateCell
-        cell.setUpCell(
-            index: movieModel?.listMovie[indexPath.row].index ?? 0,
-            isFavorite:movieModel?.listMovie[indexPath.row].isFavorite ?? false,
-            titleMovie: movieModel?.listMovie[indexPath.row].title ?? "Error",
-            movieImage: movieModel?.listMovie[indexPath.row].imageMovie ?? UIImage()
-        )
+        cell.setUpCell(movie: movieModel?.listMovie[indexPath.row] ?? MovieParse())
         
         return cell
     }

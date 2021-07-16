@@ -21,8 +21,8 @@ class MoviePresenter: MoviePresenterInputProtocol {
         repository.fetchMoviesAPI()
     }
     
-    func favorite(_ index: Int) {
-        repository.favoriteMovie(index)
+    func favorite(_ movie: MovieParse) {
+        repository.favoriteMovie(movie)
     }
    
 }
@@ -30,20 +30,18 @@ class MoviePresenter: MoviePresenterInputProtocol {
 extension MoviePresenter: MovieRepositoryOutputProtocol {
     
     func fetchMoviesResponse(_ movieData: [MovieParse]) {
-        var count = 0
-        var newList = movieData
+        var newList: [MovieParse] = []
         movieData.forEach{
             let movieParse = MovieParse(
-                isFavorite: repository.checkIfIsFavorite(count),
-                index: count,
                 id: $0.id,
                 title: $0.title,
-                imageMovie: repository.getImage(imagePath: $0.poster_path)
+                overview: $0.overview,
+                poster_path: $0.poster_path
             )
+            movieParse.imageMovie = repository.getImage(imagePath: $0.poster_path)
+            movieParse.isFavorite = repository.checkIfIsFavorite($0.id)
             newList.append(movieParse)
-            count += 1
         }
-        
         let movieData = MovieView(sections: 1, qtdMovies: movieData.count, listMovie: newList)
         
         view?.fetchMoviesResponse(movieData)

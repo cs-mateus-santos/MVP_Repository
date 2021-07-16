@@ -16,6 +16,8 @@
 		BB50AF0126A0C73D00B22A40 /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB50AF0026A0C73D00B22A40 /* MovieRepository.swift */; };
 		BB50AF0426A0C89D00B22A40 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB50AF0326A0C89D00B22A40 /* Protocols.swift */; };
 		BB50AF0626A0FD6700B22A40 /* ImageURLKingFisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB50AF0526A0FD6700B22A40 /* ImageURLKingFisher.swift */; };
+		BB97ADBD26A1C24600334A37 /* PersistenceRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97ADBC26A1C24600334A37 /* PersistenceRealm.swift */; };
+		BB97ADBF26A1CA6100334A37 /* ImageURLSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB97ADBE26A1CA6100334A37 /* ImageURLSwift.swift */; };
 		BBAFC12726442AFD000DCCC3 /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFC12626442AFD000DCCC3 /* Codable.swift */; };
 		BBAFC12C26442D4F000DCCC3 /* APIClientMovieDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFC12B26442D4F000DCCC3 /* APIClientMovieDB.swift */; };
 		BBAFC13126442EB6000DCCC3 /* APIRequestMovieDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFC13026442EB6000DCCC3 /* APIRequestMovieDB.swift */; };
@@ -68,6 +70,8 @@
 		BB50AF0026A0C73D00B22A40 /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 		BB50AF0326A0C89D00B22A40 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		BB50AF0526A0FD6700B22A40 /* ImageURLKingFisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLKingFisher.swift; sourceTree = "<group>"; };
+		BB97ADBC26A1C24600334A37 /* PersistenceRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRealm.swift; sourceTree = "<group>"; };
+		BB97ADBE26A1CA6100334A37 /* ImageURLSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageURLSwift.swift; sourceTree = "<group>"; };
 		BBAFC12626442AFD000DCCC3 /* Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
 		BBAFC12B26442D4F000DCCC3 /* APIClientMovieDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMovieDB.swift; sourceTree = "<group>"; };
 		BBAFC13026442EB6000DCCC3 /* APIRequestMovieDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestMovieDB.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 				BBAFC12B26442D4F000DCCC3 /* APIClientMovieDB.swift */,
 				BBAFC13026442EB6000DCCC3 /* APIRequestMovieDB.swift */,
 				BB50AF0526A0FD6700B22A40 /* ImageURLKingFisher.swift */,
+				BB97ADBE26A1CA6100334A37 /* ImageURLSwift.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 			children = (
 				BB50AEF926A0B9DB00B22A40 /* MovieObject.swift */,
 				BB50AEFB26A0B9FC00B22A40 /* CRUDRealm.swift */,
+				BB97ADBC26A1C24600334A37 /* PersistenceRealm.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -582,7 +588,9 @@
 				BB50AEFC26A0B9FC00B22A40 /* CRUDRealm.swift in Sources */,
 				BBED30F6264389DC00F354F9 /* ListMovieDelegate.swift in Sources */,
 				BB50AF0426A0C89D00B22A40 /* Protocols.swift in Sources */,
+				BB97ADBD26A1C24600334A37 /* PersistenceRealm.swift in Sources */,
 				BBED310126438A2000F354F9 /* Coordinator.swift in Sources */,
+				BB97ADBF26A1CA6100334A37 /* ImageURLSwift.swift in Sources */,
 				BB50AEFE26A0C3FF00B22A40 /* ViewControllerBase.swift in Sources */,
 				BB50AF0626A0FD6700B22A40 /* ImageURLKingFisher.swift in Sources */,
 				BBAFC12C26442D4F000DCCC3 /* APIClientMovieDB.swift in Sources */,

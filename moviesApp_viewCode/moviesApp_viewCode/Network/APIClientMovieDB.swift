@@ -25,12 +25,10 @@ class APIClientMovieDB: ApiRepository {
                 var listReturn:[MovieParse] = []
                 list.forEach{
                     let movieParse = MovieParse(
-                        isFavorite: false,
-                        index: nil,
                         id: $0.id ?? 0,
                         title: $0.title ?? "ERROR",
-                        poster_path: $0.poster_path ?? "ERROR",
-                        imageMovie: nil
+                        overview: $0.overview ?? "ERROR",
+                        poster_path: $0.poster_path ?? "ERROR"
                     )
                     listReturn.append(movieParse)
                 }
